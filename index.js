@@ -18,10 +18,9 @@ class Boundary {
         this.position = tilePosition
         this.width = 48
         this.height = 48
-        this.offsetX = -2379
-        this.offsetY = -1010
+        this.offsetX = -1815
+        this.offsetY = -100
     }
-
     draw() {
         ctx.fillStyle = "red"
         const x = (this.position.x * this.width) + this.offsetX
