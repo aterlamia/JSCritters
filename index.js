@@ -9,6 +9,7 @@ const debug = true
 
 const collision = new Collissions(debug)
 
+
 collision.loadCollissions()
 canvas.width = 1024
 canvas.height = 576
@@ -26,7 +27,9 @@ const background = new Sprite(
     }
 )
 
+console.log("create")
 const newBoundary = new Boundary({position: {x: 48, y: 10}, debug})
+console.log("create done ")
 function drawImage() {
     background.draw()
     ctx.drawImage(
@@ -50,6 +53,11 @@ function drawImage() {
 
 }
 
+const movables = [
+    background,
+    newBoundary
+]
+
 const keys = {
     a: {
         pressed: false
@@ -71,14 +79,42 @@ function animate() {
 
     drawImage()
     if (keys.w.pressed && keys.lastKeyY === "w") {
-        background.position.y += SPEED
+        movables.forEach((item) => {
+            item.setPostion({
+                position: {
+                    y: item.position.y += SPEED,
+                    x: item.position.x
+                }
+            })
+        })
     } else if (keys.s.pressed && keys.lastKeyY === "s") {
-        background.position.y -= SPEED
+        movables.forEach((item) => {
+            item.setPostion({
+                position: {
+                    y: item.position.y -= SPEED,
+                    x: item.position.x
+                }
+            })
+        })
     }
     if (keys.a.pressed && keys.lastKeyX === "a") {
-        background.position.x += SPEED
+        movables.forEach((item) => {
+            item.setPostion({
+                position: {
+                    y: item.position.y,
+                    x: item.position.x += SPEED
+                }
+            })
+        })
     } else if (keys.d.pressed && keys.lastKeyX === "d") {
-        background.position.x -= SPEED
+        movables.forEach((item) => {
+            item.setPostion({
+                position: {
+                    y: item.position.y,
+                    x: item.position.x -= SPEED
+                }
+            })
+        })
     }
     window.requestAnimationFrame(animate)
 }

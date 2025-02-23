@@ -5,6 +5,10 @@ class Sprite {
         this.ctx = ctx
     }
 
+    setPostion({position}) {
+        this.position = position
+    }
+
     draw() {
         this.ctx.drawImage(this.image, this.position.x, this.position.y)
     }
