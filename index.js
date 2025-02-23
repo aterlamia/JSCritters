@@ -29,8 +29,8 @@ class Sprite {
 const background = new Sprite(
     {
         position: {
-            x: -2379,
-            y: -1010
+            x: -1815,
+            y: -100
         },
         image: map
     }
